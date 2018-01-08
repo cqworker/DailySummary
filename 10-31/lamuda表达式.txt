@@ -1,0 +1,9 @@
+匿名函数
+ 创建方式:
+	Func<string, bool> del = a => a.Equals("string");
+	Func<string, bool> del = (a) => { return a.Equals("string");}
+	Func<string, bool> del = equals;
+
+       三者是等效的，“=>”左边的a为传入参数，就是equals(string a)中的a，“=>”右边的是语句块。
+
+       Func<string, bool>是Func<T, TResult>委托，T表示传入参数的类型，可以是值类型、类等，TResult为返回的类型。

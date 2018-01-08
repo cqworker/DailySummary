@@ -1,0 +1,12 @@
+git生成ssh key 的原理?
+git库采用证书认证的方式
+
+1.需要在本机上执行：#ssh-keygen 根据提示输入信息后会在~/.ssh目录下生成id_rsa.pub文件和id_rsa文件。
+2.请将id_rsa.pub文件发给master。然后在使用ssh的时候使用id_rsa证书
+3.提交代码修改时,通过证书验证机器
+
+管理多个git key?
+生成config文件将key区分开
+每次使用时将.ssh中的key做替换
+
+

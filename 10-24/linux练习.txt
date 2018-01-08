@@ -1,0 +1,10 @@
+uname -r 查看内核版本,判断软件和内核是否兼容
+
+yum -y install 
+yum -y remove 
+yum search cc|grep cc
+
+yum update 
+
+vim 
+/     文件中查找

@@ -1,0 +1,71 @@
+10天完成的脚本语言,用来实现浏览器交互
+
+JavaScript是一种运行在浏览器中的解释型的编程语言
+
+在Web世界里，只有JavaScript能跨平台、跨浏览器驱动网页，与用户交互
+
+JavaScript语言的标准，被称为ECMAScript标准。JavaScript是网景公司对ECMAScript标准的一种实现
+那为什么不直接把JavaScript定为标准呢？因为JavaScript是网景的注册商标
+也可以简单的理解为:  JavaScript == ECMAScript
+ECMAScript 6标准（简称ES6) 2015-6月发布.js的版本就是根据实现的ES标准来确定的
+
+null表示一个“空”的值，它和0以及空字符串''不同，0是一个数值，''表示长度为0的字符串，而null表示“空”。
+在其他语言中，也有类似JavaScript的null的表示，例如Java也用null，Swift用nil，Python用None表示。但是，在JavaScript中，还有一个和null类似的undefined，它表示“未定义”。
+JavaScript的设计者希望用null表示一个空的值，而undefined表示值未定义。事实证明，这并没有什么卵用，区分两者的意义不大。大多数情况下，我们都应该用null。undefined仅仅在判断函数参数是否传递的情况下有用。
+
+
+数据类型
+	Number
+		可以使用其他进制表示,js的引擎可以区分.  不区分整数,浮点数.  特殊含义:NaN表示无法计算结果 NaN === NaN; // false 需要使用isNaN(xx),Infinity表示无限大
+	String
+	boolean
+	null
+	undefined
+	数组
+	map
+	set
+	对象
+		JavaScript对象的所有属性都是字符串，不过属性对应的值可以是任意数据类型. _Person.name 或者person['name'],后者是在对象定义中使用'name':'cq'前者是name:'cq'
+		新增和删除对象属性 cq.age=18 _ delete cq.age _判断是否存在属性 'age' in cq 属性可以是继承来的一样会返回true _使用cq.hasOwnProperty('name')来区分继承属性和只有属性
+		使用this
+			对象调用方法,方法中使用this,this指向对象
+			单独调用方法,this指向全局对象window
+	变量
+		强制使用var定义变量 可以使用strict模式:浏览器需要支持,在js代码第一行加:'use strict' 若未使用会将报ReferenceError错误
+		变量定义的作用域:
+			特性:先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部.所以在函数内部首先申明所有变量._这也会导致函数中for if等块代码中定义的变量可以在块外被使用 _解决的方法是使用ES6中的let
+			定义最终变量 使用关键字 const
+			全局变量的本质是: 把属性绑定到全局对象window上
+			定义函数的本质也可以理解为函数本身就是一个变量
+			处理多个js中可能出现的变量名冲突问题 _命名空间_即每个js对应一个全局变量(命名空间)然后把变量绑定到全局变量上
+		解构赋值:
+			可以简化代码
+			使用场景 交换变量值,获得当前页面值
+			可以同时给变量赋值  var {name, age, passport} = person; console.log(name)
+JSON
+	被设计用来数据交换代替笨重的xml  _是javaScript的一个子集
+	toJson:function(){}  json对象中定义方法,精确控制如何字符串化对象
+	JSON.stringify()方法可以将json对象字符串化,可以按缩进输出,可以指定输出键值,可以展示前预处理数据
+	JSON.parse()解析json字符串为javascript对象,可传入方法参数来预处理数据
+
+正则表达式
+	的设计思想是用一种描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，我们就认为它“匹配”了，否则，该字符串就是不合法的
+在javascript中使用正则表达式
+	可以验证输入
+	可以规范输入 _例 可以更灵活的以,:./等切分字符串
+	可以截取-提取子串
+javascript支持lamuda表达式:
+	或称箭头函数,用来简化函数定义
+
+ajax跨域处理
+	有其他诸如flash,额外的服务器代理等方式解决
+	常用的JSONP
+		有个限制，只能用GET请求，并且要求返回JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用JavaScript资源
+		步骤:
+			一个函数生成javascript src赋值为需要访问的url ,请求url返回获得json
+			一个函数获取返回的json解析,组装
+	HTML5 的CORS跨域策略
+		支持get head post
+		跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的Access-Control-Allow-Origin
+		支持put delete
+		...

@@ -1,0 +1,42 @@
+exit()
+print
+name = raw_input()
+
+以上针对的是String类型
+
+python支持多种类型
+可以使用''   "" 转义使用\  非转义 r''
+另一种换行''' 开始'''结束
+
+boolean 型需要大写首字母
+可以用and or not 运算
+
+python适合js类似的动态语言,即在赋值的时候不必需指定变量类型
+
+当在命令行 写a = 'ABC'时 回车时python的
+解释器干了两件事:内存中创建'ABC',创建变量a 并把a指向'ABC'
+
+常量同样是全用大写字母来表示
+
+理解整数运算结果永远是精确的说法
+
+编码问题:内部都是ASCLL码,使用u'xxx'来指定使用utf-8
+ord()和chr()函数,字母和数字转换
+len()返回字符串的长度
+'xxx'.decode('utf-8')把非utf-8字符用utf-8编码
+
+当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：
+
+在Python中，采用的格式化方式和C语言是一致的，用%实现
+'Hi, %s, you have $%d.' % ('Michael', 1000000)
+
+数组
+classmates = ['Michael', 'Bob', 'Tracy']
+len(classmates)
+
+for x in names 遍历数组
+
+
+
+
+

@@ -1,0 +1,6 @@
+MSYS:  一个小型的GNU环境，包括基本的bash，make
+
+MinGW：即Minimalist GNU for Windows。它是一些头文件和函数库的集合，该集合允许人们在没有第三方动态链接库的情况下使用GCC（GNU Compiler C）产生Win32程序
+
+MSYS2: 是MSYS的一个升级版,准确的说是集成了pacman和MinGW-w64的Cygwin升级版, 
+提供了bash shell等linux环境、版本控制软件（git/hg）和MinGW-w64 工具链

@@ -1,0 +1,22 @@
+#!anko
+
+result = nil
+res =false
+if(true){
+ res = true;
+}
+print(res);
+
+if (ISNONE(result)){res = true;}
+result = QUERY_ONE("select DateDiff(contract_jzsj,contract_qssj) as time from Contract where id=?",id);
+var res = false;
+if (result!=nil){res = true;}
+res;
+
+#func(x) {
+#  return func(y) {
+#    x(y)
+#  }
+#}(func(z) {
+#  println("Yay!", z)
+#})("hello world")

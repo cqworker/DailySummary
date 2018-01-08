@@ -1,0 +1,3 @@
+referer  当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器我是从哪个页面链接过来的
+	可以统计来源数据,防止盗链
+	jsp中获得方式:  request.getHeader("REFERER")

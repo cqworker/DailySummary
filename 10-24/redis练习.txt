@@ -1,0 +1,9 @@
+使用rdm:
+
+切换数据库:  select index 
+存储 结构: 字符串,hash,列表,set集合,有序集合
+查看类型:
+
+查看value: get  dev_Account_ios_config_AQACd5VVkc7RCAAAAMXO4xQc5BQdCAAA
+获得value的子字符串:  GETRANGE mykey 0 3
+ 

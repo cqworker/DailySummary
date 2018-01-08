@@ -1,0 +1,14 @@
+在python中，自动化操作web，有selenium和splinter，后者主要根据前者进行一个封装
+
+Splinter对已有的自动化工具（如：Selenium、PhantomJS和zope.testbrowser）进行抽象，形成一个全新的上层应用API，它使为Web应用编写自动化测试脚本变的更容易
+
+安装Splinter  只支持2.7
+	其他常用 urllib、urllib2库
+	下载splinter pip install splinter  url:http://splinter.readthedocs.io/en/latest/drivers/chrome.html
+	配置浏览器驱动和浏览器path(让程序知道从哪里启动浏览器)
+	配置驱动path
+	因为官网对win下的安装语焉不详,所以了解了一些linux下配置环境变量的方法url:http://www.linuxidc.com/Linux/2015-08/121192.htm 
+	其实只是把驱动代理配置到path中就可以了,名字随意
+
+使用
+	

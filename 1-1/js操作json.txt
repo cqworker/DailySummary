@@ -1,0 +1,18 @@
+遍历一个json对象获得每组key和value:
+	var json = {key1:'value1',k2:'v2',k3:123}
+
+	for(var key in json){//遍历json对象时,key为key
+		alert(key+':'+json[key]);
+	}
+遍历一个包含多个json对象的json数组:
+	var jsonarr = [{k:v},{k:v},{k:v}]
+
+	for(var p in jsonarr){//遍历json数组时，这么写p为索引，0,1
+		alert(packJson[p].k;
+	}
+
+nodejs对json的使用:
+	var jsonobj ={};
+	jsonobj.name = 'cq';
+	jsonobj.password = "cq009";
+	可直接为json对象创建key,value

@@ -1,0 +1,3 @@
+插件安装 setting
+ctrl+shf+p
+格式化代码 auto-beautifal  快捷键Ctrl+Alt+b

@@ -1,0 +1,2 @@
+python standard.py  create
+可以这样实现一个python中调用不同的方法

@@ -1,0 +1,50 @@
+7/17 星期一
+简单的可以通过命令窗口完成数据库的操作的指令需要知道.
+
+清除数据表中的数据：
+DELETE FROM TABLENAME  或者    TRUNCATE TABLE TABLENAME
+注明：不带WHERE参数的DELETE语句可以删除表中所有内容，使用TRUNCATA TABLE 也可以清除表中所有数据
+从效率上来讲 TRUNCATE 要比DELETE 快，但 TRUNCATE 删除后不记录日志并不可恢复数据。
+
+索引采用二叉树原理创建,
+二叉树 https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%8F%89%E6%A0%91
+二叉树可以用数组或链接串列来存储,
+根节点的索引为0）则在它左子节点的索引会是  2i+1 ，以及右子节点会是  2i+2；而它的父节点（如果有）索引则为 (int)(i-1)/2。这种方法更有利于紧凑存储和更好的访问的局部性
+但因为是连续存储,所以可能会造成空间浪费,是顺序存储结构的一大缺点。
+
+创建索引：
+CREATE [UNIQUE] INDEX IDXNAME ON TABLENAME(列名);
+create index myfirstindex on student(Name);
+删除索引：
+DROP INDEX IDXNAME;
+注明：索引是不可更改的，想更改必须删除索引重新建。
+
+当使用多列索引的时候:
+多列索引，还有一个可用的情况就是， 某些情况下，可能查询，只访问索引就足够了， 不需要再访问表了
+
+5．查看索引
+mysql> show index from tblname;
+mysql> show keys from tblname;
+
+创建视图：
+CREATE VIEW VIEWNAME AS  (SQL语句   SELECT...);
+删除视图：
+DROP VIEW VIEWNAME;
+视图：
+视图是一种数据库对象，它是一个虚拟表，并不代表任何我物理数据，只是用来查看数据的窗口。
+
+存储过程：
+存储过程是一组为完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字给出参数来执行它。
+
+
+数据库知识点附地址http://www.jianshu.com/p/d776ab60c280
+
+常见数据库错误提示信息详解 http://noodle.blog.51cto.com/2925423/1794948
+
+数据库分库分表是遇到的问题 http://www.infoq.com/cn/articles/key-steps-and-likely-problems-of-split-table
+含数据库集群
+在数据库使用过程中 随着数据越来越多 数据关系越来越复杂 一个要求时在建表的时候做好设计 还有一个就必须在之后对数据库进行升级维护
+1.水平分表，能够降低单表的数据量，一定程度上可以缓解查询性能瓶颈。但本质上这些表还保存在同一个库中，所以库级别还是会有IO瓶颈
+2.水平分库分表 有些系统中使用的“冷热数据分离”(读写分离) 在高并发和海量数据的场景下，分库分表能够有效缓解单机和单库的性能瓶颈和压力，突破IO、连接数、硬件资源的瓶颈。当然，投入的硬件成本也会更高
+还需要解决技术问题（例如：跨分片的复杂查询，跨分片事务等）
+跨库Join的几种解决思路:全局表 字段冗余 数据同步 系统层组装(会涉及RPC)

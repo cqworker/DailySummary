@@ -1,0 +1,38 @@
+curl(命令行统一资源定位符)CommandLine Uniform Resource Locator是利用URL语法在命令行方式下工作的开源文件传输工具。它被广泛应用在Unix、多种Linux发行版中，并且有DOS和Win32、Win64下的移植版本
+[参考地址](http://www.cnblogs.com/gbyukg/p/3326825.html)
+[外文地址](http://www.thegeekstuff.com/2012/04/curl-examples/)
+获得页面,下载图片文件等
+ curl http://www.baidu.com
+ 要全部显示，请加参数 -i
+ 任何时候，可以使用 -v 命令看curl是怎样工作的，它向服务器发送的所有命令都会显示出来
+ 为了断点续传，可以使用-r参数来指定传输范围
+ -D curl -D sugarcookies http://localhost/sugarcrm/index.php # 将网站的cookies信息保存到sugarcookies文件中
+ -b curl -b sugarcookies http://localhost/sugarcrm/index.php # 使用上次保存的cookie信息
+ -x curl -x proxysever.test.com:3128 http://google.co.in # 指定代理主机和端口
+ -X curl -X DELETE https://api.github.cim #使用除GET POST外的其他协议
+
+
+get:
+curl "www.hotmail. com/when/junk.cgi?birthyear=1905&press=OK"
+post:
+curl -d "birthyear=1905&press=OK" www.hotmail. com/when/junk.cgi
+curl -F upload=@localfilename -F press=OK URL 上传文件
+还有多种其他用法
+
+put:  HTTP协议文件上传的标准方法是使用PUT
+curl -T uploadfile www.uploadhttp. com/receive.cgi
+
+认证相关:
+curl -u name:password www.secrets. com
+
+指定用户端,伪装浏览器
+curl -A "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" URL
+这个指令表示curl伪装成了IE5.0，用户平台是Windows 2000
+
+
+使用curl可能造成的问题:中文字符乱码
+使用python代替curl  https://curl.trillworks.com/
+
+
+
+

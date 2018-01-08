@@ -1,0 +1,5 @@
+&nbsp;     不换行空格
+
+target="_blank"
+
+用div实现ifream 的功能:  $("#id").load("xx.action/xx.jsp");

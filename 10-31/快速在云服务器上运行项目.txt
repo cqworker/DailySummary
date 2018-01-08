@@ -1,0 +1,81 @@
+yum 安装必要软件
+yum install nginx
+yum install nodejs
+
+关闭防火墙
+systemctl stop firewalld
+
+启动nginx
+
+配置反向代理
+etc/nginx
+vim nginx.conf 查看nginx的配置信息
+server {
+
+    listen       3000;
+
+    server_name  www.mqc.com;    #要访问的域名，我这里用的测试域名，如果有多个，用逗号分开
+
+    charset utf8;
+    #可以单独放在conf中用include引用
+
+    location / {
+
+       # proxy_pass       http://proxy_test;               #这里proxy_test是上面的负载的名称，映射到代理服务器，可以是ip加端口,   或url 
+
+        proxy_set_header Host      $host;
+
+        proxy_set_header X-Real-IP $remote_addr;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+      }
+
+   }
+
+}
+
+创建监听对应端口的server{}
+
+将项目包上传并启动
+
+在其他计算机上访问已配置好的域名,或已注册生效的域名+端口
+
+安全跳转--使用证书验证 https
+出现80端口占用,nginx -s quit 退出nginx重新启动
+查看端口: netstat -anp|grep 80
+
+find -name   filename 
+
+使用git
+yum install git 
+在用户目录下(root/.ssh)生成设备绑定的ssh     ssh-keygen -t rsa
+ls -ah 查看隐藏文件
+上传id_rsa.pub到github上
+
+
+vpn
+openvpn --config /root/meiqiaVpn/meiqia-vpn-ldap.ovpn --auth-retry interact
+
+
+可以点击xshell上的断开连接即可,也可以
+使用pm2完成js项目后台启动和管理
+
+查询文件中的关键字上下五行 (A B 之前之后)
+grep -C 5 'mysql' app.js
+
+
+安装mysql
+mysql    mysql-server 
+可能会出现的问题http://www.linuxidc.com/Linux/2013-03/81331.htm
+登录之后设置密码
+set password for root@localhost = password('shapolang');
+使用update usr表需要刷新权限  flush privileges;
+设置远程访问
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+
+查看已使用多少内存
+ free -m
+
+
+ pm2 delete all 删除所有应用

@@ -1,0 +1,13 @@
+#!/usr/bin/ruby -w 修改为.rb
+puts "这是主Ruby程序"
+BEGIN{
+	puts "这是初始化程序"
+}
+print <<x
+这是一个字符串
+第二行字符串
+x
+
+name = "Ruby"
+puts name
+puts "#{name}"+',ok'

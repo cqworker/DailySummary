@@ -1,0 +1,11 @@
+查找当前目录文件:
+	dir
+查看端口占用:
+	netstat -ano | findstr "80"
+查看端口占用程序 上一步查出的"PID"
+	tasklist | findstr "5584"
+
+创建文件和文件夹
+	cd >a.txt
+	mkdir folderName
+	

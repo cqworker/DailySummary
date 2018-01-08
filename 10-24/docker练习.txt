@@ -1,0 +1,106 @@
+docker提供容器 可以取代原有的虚拟机,而且提供了更方便的容器间和容器中的管理,资源消耗也更小
+
+docker可以用来干什么:
+	在容器中运行 Python Flask 应用并把它的端口映射到安装docker的主机上的某个端口,即可实现在主机上访问该端口访问项目
+	应用代码可以挂载在宿主目录,也可以放在镜像内,在敏捷开发中代码变动频繁采用挂载是个好办法
+
+安装docker 
+	https://docs.docker.com/engine/installation/linux/docker-ce/centos/#uninstall-old-versions
+	本次采用脚本安装
+
+如何使用docker呢:
+	启动服务
+	service docker start
+	或者使用
+	#/bin/systemctl start vsftpd.service
+
+	使用镜像创建容器
+	docker run ubuntu:15.10
+
+	运行容器内的应用:  
+		docker run ubuntu:15.10 /bin/echo "Hello world"	
+		docker run -d -P training/webapp python app.py
+		-d 后台运行 -P映射带主机端口
+		返回一个唯一的容器ID
+
+	查看已启动的docker容器:
+		docker ps
+	查看某个容器的端口号和主机映射端口号:
+		docker poart name/id
+	查看容器日志
+		docker log -f name/id
+	查看容器内进程:
+		docker top name
+	stop start rstart rm inspect
+
+docker镜像:
+	获取本机镜像列表:
+	docker images
+
+	外网搜索镜像
+	docker search
+	获取镜像
+	pull
+	使用镜像
+	run
+	-p
+	-d
+	--name
+
+容器间的连接
+	端口映射
+
+修改容器 ->(ps -l)获得新的id ->保存新的名字并提交
+	docker commit 698 learn/ping
+使用修改后的容器
+	docker run learn/ping
+
+构建镜像
+docker build
+发布镜像
+docker images  获得本机上的docker镜像
+docker push learn/ping 推送到自己的空间
+
+沙箱操作,
+虚拟机,虚拟机需要占用过多的资源,运行是在虚拟出的内核上执行的,docker只是宿主机上的进程
+
+在docker hub 上创建镜像仓库.tag可以用来区分,创建自己的镜像push到仓库,可以在其他机器上pull下来使用
+使用docker login 登录远程仓库,登录成功会在本地用户目录的.dockercfg中将保存用户的认证信息
+创建本地镜像:下载已存在的镜像,修改后使用;配置Dockerfile 类比maven  
+	创建镜像文件夹 mkdir sinatra
+	文件夹中创建文件 touch Dockerfile
+	写
+	创建镜像 docker build -t ouruser/sinatra:v2 . 
+		-t标识镜像是ouruser的 
+		sinatra 仓库名称
+		:v2 tag
+		.指定时当前路径下的dockerfile
+
+基于墙:配置加速镜像
+	解决找不到镜像和下载慢的问题 https://blog.lab99.org/post/docker-2016-07-14-faq.html#docker-pull-hao-man-a-zen-me-ban
+	redis例子:
+		mkdir -p ~/redis ~/redis/data 创建文件,将容器挂载到本地
+		docker run -p 6379:6379 -v $PWD/data:/data -v $PWD/redis.conf:/redis.conf  -d redis:3.2 redis-server /redis.conf --appendonly yes
+			-p 6379:6379 :将容器的6379端口映射到主机的6379端口
+			-v $PWD/data:/data :将主机中当前目录下的data挂载到容器的/data
+			redis-server --appendonly yes :在容器执行redis-server启动命令，并打开redis持久化配置
+		返回容器id表示正常,可以连接
+		修改auth等
+		从redis官网下载对应版本的conf文件->编辑conf文件;修改#requirepass foobared -->requirepass root ;重启
+		关闭docker中的软件服务 docker stop xxx
+		指定文件启动  -v $PWD/redis.conf:/redis.conf 
+		注意:conf文件中还需要配置外部连接,注释127.0.0.1...
+
+
+ocker容器可以理解为在沙盒中运行的进程。
+这个沙盒包含了该进程运行所必须的资源，包括文件系统、系统类库、shell 环境等等。
+但这个沙盒默认是不会运行任何程序的。你需要在沙盒中运行一个进程来启动某一个容器。
+这个进程是该容器的唯一进程，所以当该进程结束的时候，容器也会完全的停止
+docker的镜像是分层存储的,不同的镜像会共享相同的配置
+
+
+
+实际使用:
+	开发机上构建镜像将开发包放入,push上传仓库
+	环境机上pull下镜像设置端口,直接运行
+docker处于敏捷开发,使用最新版本的docker至关重要,使用yum等安装的源可能会滞后,需要配置源或者使用脚本安装

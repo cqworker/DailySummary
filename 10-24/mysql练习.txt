@@ -1,0 +1,68 @@
+CONTAINS 全文索引 http://blog.csdn.net/abaowu/article/details/432521012/27 
+SUBSTRING_INDEX(name, ' ', -1) ?
+
+可以使用模式匹配实现模糊查询 有两种模式sql模式和正则表达式模式
+
+连表查询实际就是 查询出需要的 组合
+	表的连接同样是排列组合的情况
+
+AND和 OR可以混合在一起， AND比它有更高的优先权 OR
+
+排序的ORDER BY 默认由小到大ASC     DESC(大到小)
+
+区分大小写的BINARY 
+
+判断是否为空 WHERE death IS NOT NULL 不要使用=或者<>结果只会是null
+
+计算日期相差 用来比较的日期项 起始日期 截止日期
+	TIMESTAMPDIFF(MONTH,'2003-02-01',CURDATE());
+	支持日期细化YEAR()  MONTH() DAYOFMONTH() 
+
+取模(求余)	MOD(200,2);
+		200 % 2
+		200 MOD 2
+最大值		MAX()
+
+DESCRIBE  获取表结构:
+	describe event
+
+
+展示建表语句 show create table event;
+
+mysql 执行有交互式和批处理方式,批处理为指定文件去执行 https://dev.mysql.com/doc/refman/5.7/en/batch-mode.html
+mysql < batch-file
+
+mysql用户变量 和客户端临时变量
+SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
+SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
+
+对innoDB支持的外键查询
+声明外键 在建表语句中需要添加属性: REFERENCES tbl_name(col_name)
+但是在show create table 中不会显示出来
+
+EXPLAIN 获取执行计划:
+	explain(select name from event);
+	即获得mysql如何执行查询
+	借助于此EXPLAIN，您可以看到应该在哪里添加索引，以便通过使用索引查找行来更快地执行语句。您也可以使用 EXPLAIN来检查优化程序是否以最佳顺序加入表
+
+UNION 和并结果集:
+	和or达到的结果一致
+	会以第一条select语句的列名为结果集的列名,出现类型不匹配,会采用所有语句的类型
+	(SELECT ...)
+	UNION
+	(SELECT ...);
+	合并之后会默认group by去重,在union后加all可取消去重
+
+去重 :
+	distinct
+
+结果集写入文件 :
+	INTO OUTFILE
+
+
+优化:	sql执行时会对用户输入做自动优化
+	文件存储,存储文件地址而不是文件内容
+	使用引擎接口而不是sql接口
+	优化权限控制减少sql开销,例如:表级列级权限
+	主从复制
+	

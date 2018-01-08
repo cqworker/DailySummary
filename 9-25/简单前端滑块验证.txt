@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动滑块验证</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <style type="text/css">
+        #demo{
+            height: 30px;
+            width: 260px;
+            color: #000;
+            margin: 20px auto;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            position: relative;
+        }
+        #bar,#ban,p{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        p{
+            height: 30px;
+            width: 260px;
+            text-align: center;
+        }
+        #bar{
+            width: 40px;
+            height: 30px;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            left: -1px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #ban{
+            height: 30px;
+            background-color: #7ac23c;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <div id="ban">
+        </div>
+        <p>拖动滑块验证</p>
+        <div id="bar">
+            >>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = function (){
+            var ban = document.getElementById("ban");
+            var bar = document.getElementById('bar');
+            isMove = false;//是否可以移动 默认值false 当滑块点击就可以移动了
+            var oldX = 0;// 鼠标的初始位置
+            var isTrue = false //是否移动成功
+            bar.onmousedown = function (event){//点击滑块
+                var event = event || window.event;//??
+                oldX = event.clientX;
+                isMove = true;// 按下之后可以滑动了
+                return false;
+            }
+            bar.onmouseout = bar.onmouseup = function (){//鼠标按下抬起事件
+                isMove = false;//不可移动
+                if (!isTrue) {// 如果没有移动成功
+		goMoren();//就会回到初始位置
+                }
+                return false;
+            }
+            function goMoren(){
+                var timer = setInterval(function (){//绿色效果
+                    var speed = (bar.offsetLeft - (-1))/5;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    bar.style.left = ban.style.width = bar.offsetLeft - speed + "px";
+                    if (bar.offsetLeft == -1) {
+                        clearInterval(timer);//未成功清空绿色
+                    }
+                },30)
+            }
+            document.onmousemove = function (event){//鼠标滑动事件
+                var event = event || window.event;
+                // 鼠标在窗口中滑动 且isMove 为true 确认滑动
+                if (isMove) {
+                    var dirX =  event.clientX - oldX;
+                    console.log(dirX);
+                    bar.style.left = bar.offsetLeft + dirX + 'px';
+                    //越界处理
+                    if (bar.offsetLeft <= -1) {
+                        bar.style.left = '-1px';
+                    }
+                    if (bar.offsetLeft + bar.offsetWidth >= 261) {
+                        bar.style.left = 261 - bar.offsetWidth + 'px';
+                        bar.innerHTML = "√";
+                        bar.style.color = "#7ac23c";
+                        isTrue = true;
+			//成功滑块无法再操作
+			//bar.attr('href','javascript:void(0)')
+
+                    }
+                    ban.style.width = bar.offsetLeft + "px";
+                    oldX = event.clientX;
+                }
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+//通过xpath解析xml文档
+//lxml/xpath/regExp
+
+xhttp=new XMLHttpRequest();
+xhttp.open("GET",dname,false);
+xhttp.send("");
+xml = xhttp.responseXML;
+path = "/bookstore/book[1]/title"
+var nodes=xml.selectNodes(path);
+for (i=0;i<nodes.length;i++)
+  {
+  document.write(nodes[i].childNodes[0].nodeValue);
+  document.write("<br />");
+  }
+}

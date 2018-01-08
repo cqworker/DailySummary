@@ -1,0 +1,25 @@
+0. ECMAScript DOM BOM
+1. 弱类型语言
+2. 变量定义规则,第一位为字母,下划线,$
+3. 原始类型 Undefined Null Boolean Number String 5种,直接存在栈中
+4. 类型转换toString() paseInt() paseDouble() Number() Boolean() String()
+5. 一元运算符 void() delete ++Num Num--
+6. 位运算符 ~ & | ^ >> >>>  原反补码
+7. 条件运算符 三位运算
+8. 标签语句 start : i = 5; 标签 start 可以被之后的 break 或 continue 语句引用。
+9. arguments 对象 来描述方法的参数即参数属性
+10. Function 对象   有助于理解函数只不过是一种引用类型，它们的行为与用 Function 类明确创建的函数行为是相同的。
+11. 闭包 函数可以使用函数之外定义的变量 复杂度的概念
+12. 本地对象、内置对象(Math/Global)和宿主对象(DOM/BOM)
+13. 为什么使用 this 呢？因为在实例化对象时，总是不能确定开发者会使用什么样的变量名。使用 this，即可在任何多个地方重用同一个函数
+14. 对象的创建 构造加原型(prototype)方式
+function Car(sColor,iDoors,iMpg) {
+  this.color = sColor;
+  this.doors = iDoors;
+  this.mpg = iMpg;
+  this.drivers = new Array("Mike","John");
+}
+
+Car.prototype.showColor = function() {
+  alert(this.color);
+};

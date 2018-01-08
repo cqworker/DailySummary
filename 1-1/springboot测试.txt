@@ -1,0 +1,8 @@
+idea选择:war包  sb版本1.5.9 
+	出现Disconnected from the target VM, address: '127.0.0.1:50094', transport: 'socket
+
+启动sb项目时出现
+	Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+	在搭建环境的时候,选择了mysql但是却没有配置数据源
+	根据提示debug启动出现:  Disconnected from the target VM, address: '127.0.0.1:50094', transport: 'socket
+	idea和maven版本不兼容
