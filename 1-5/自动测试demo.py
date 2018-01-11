@@ -5,7 +5,7 @@ import time, threading
 
 baner = """
     ##################################
-    脚本介绍:  自动实现www.mqc.com的访问
+    脚本介绍:  自动实现www.mqc.com的访问更换input value
     ##################################
     """
 
@@ -35,6 +35,3 @@ if __name__=='__main__':
     # print baner
 
     pz(ip='10.100.250.133',xToken='AQsCAH4ZylkAAEFRQUNkNVZWa2M3UkNBQUFQU0xlNHhRYzVCUWVDQUFBQVFBQ2Q1VlZrYzdSQ0FBQUFNWE80eFFjNUJRZENBQUHpdByJItptku7_xrJZvPRPvw8ETwX8c74DTTHaq5ClR2ouJbEKqLDInLz-P_KmENSsJMTtcrOe0pjlIlTItpid',tenement='GuoXinLianCheng')
-
-
-

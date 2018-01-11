@@ -8,4 +8,6 @@
 创建文件和文件夹
 	cd >a.txt
 	mkdir folderName
-	
+cmd 快捷键f1-f9
+	f1逐个打印出上一条命令语句
+	f7 f9显示所有记录,f9选择

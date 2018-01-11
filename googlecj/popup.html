@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>meiqia实施</title>
+    <link rel="stylesheet" href="bootstrapform.css" type="text/css">
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+</head>
+<body>
+<h2 align="center"></h2>
+<form class="bootstrap-frm">
+    <strong>创建自定义对象</strong><span style="display: none" id="success">√</span><span style="display: none" id="defeat">×</span><br/><br/>
+display_name:<input type="text" name="meta_display_name" id="dis"><br/>
+dataBase_name:<input type="text" id="meta"><br/>
+    <input type="button" id="checkMeta" value="检查名称是否可用"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" id="createObj" value="创建"/>
+</form>
+
+<div align="center">
+
+</div>
+<br/>
+<div align="center">
+ObjectCsv:<input type="file" onchange="jsReadFiles(this.files)"/>
+</div>
+    <div id="myDiv">
+    <table>
+        <thead id="mHead"></thead>
+        <tbody id="mBody"></tbody>
+    </table>
+</div>
+<div>
+</div>
+</body>
+</html>
